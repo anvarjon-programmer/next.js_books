@@ -1,5 +1,6 @@
 import axios, { CreateAxiosDefaults } from "axios";
-import Cookies from "js-cookie";
+import { getCookies } from "../helpers/auth.helpers";
+// import Cookies from "js-cookie";
 const API_URL = process.env.API_URL;
 const options:CreateAxiosDefaults = {
     baseURL:API_URL,
@@ -12,7 +13,7 @@ const $apiAuth = axios.create({
 })
 
 $api.interceptors.request.use((config) =>{
-    const accessToken  = Cookies.get('token')
+    const accessToken  = getCookies()
     if(config.headers && accessToken){
         config.headers.Authorization = `Bearer ${accessToken}`
     }

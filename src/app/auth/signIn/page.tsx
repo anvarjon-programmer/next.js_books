@@ -1,11 +1,13 @@
+"use client"
 import React from 'react'
 import { signIn } from '../../../../api-service/auth.service'
 import { IAuthPromise,ISignInPayload } from '../../../../types/auth.types'
 import { redirect } from 'next/navigation'
+import { useRouter } from 'next/navigation'
 
 const SignIn = () => {
+  const router = useRouter()
   const handleSubmit = async(formDta:FormData) =>{
-    "use server"
     let username = formDta.get("username")
     let password = formDta.get("password")
     let payload : ISignInPayload = {username,password}
@@ -13,8 +15,8 @@ const SignIn = () => {
     console.log(response?.tokens,'user-response');
     if(response?.tokens){
       redirect("/dashboard")
+      router.push("dashboard")
     }
-    
   }
   return (
     <div className='w-screen h-screen flex flex-col items-center justify-center'>

@@ -2,3 +2,12 @@
 @tailwind components;
 @tailwind utilities;
 
+.container{
+    max-width: 1200px;
+    margin: 0 auto;
+}
+.code__id{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
